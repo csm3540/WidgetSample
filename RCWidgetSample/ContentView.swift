@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var text: String = "test"
+    @State private var showingAlert = false
+   // @State private var widgetData: WidgetData
     var body: some View {
-        Text("Hello, world!")
+        Text(text)
             .padding()
+            .onAppear {
+            }
+            .onOpenURL(perform: { url in
+                self.showingAlert = true
+            })
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("Important message"), message: Text("Wear sunscreen"), dismissButton: .default(Text("Got it!")))
+            }
+            
+            
+        
     }
 }
 
